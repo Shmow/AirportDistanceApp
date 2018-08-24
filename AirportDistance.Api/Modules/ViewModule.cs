@@ -53,7 +53,7 @@ namespace AirportDistance.Api.Modules
             }
             else
             {
-                model.Errors.Add("External service return invalid result.");
+                model.Errors.Add("External service returned invalid result.");
             }
 
             return model;
