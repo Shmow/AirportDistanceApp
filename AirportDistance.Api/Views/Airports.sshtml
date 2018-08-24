@@ -1,0 +1,19 @@
+﻿@If.ContainsData
+<div class="row mt-3">
+    <div class="d-block bg-light p-3 w-100">
+        <div class="d-flex flex-row justify-content-center">
+            @Partial['AirportCards.sshtml', Model.Airports];
+        </div>
+        <div class="d-flex flex-row justify-content-center mt-3">
+            <div class="card d-inline-flex">
+                <div class="card-body">
+                    <p class="card-text">
+                        <!-- <iframe width="600" height="450" frameborder="0" style="border:0" src="@Model.GoogleMapsUrl" allowfullscreen></iframe> -->
+                        <h1 class="display-4">Distance: @Model.Distance km</h1>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@EndIf

@@ -1,0 +1,15 @@
+@Each
+<div class="card mr-3" style="width: 22rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Current.Iata</h5>
+        <h6 class="card-subtitle mb-2 text-muted">@Current.City (@Current.City_iata), @Current.Country (@Current.Country_iata)</h6>
+        <p class="card-text">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Name: @Current.Name</li>
+                <li class="list-group-item">Lat: @Current.Location.Lat</li>
+                <li class="list-group-item">Lon: @Current.Location.Lon</li>
+            </ul>
+        </p>
+    </div>
+</div>
+@EndEach
