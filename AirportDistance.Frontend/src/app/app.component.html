@@ -1,0 +1,22 @@
+<div class="row mt-3">
+  <div class="col-12 bg-light p-3">
+      <h1 class="display-3">IATA distance lookup</h1>
+      <!-- <div class="alert alert-danger" role="alert">
+      </div> -->
+      <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+              <label class="font-weight-bold" for="departureAirport">Departure</label>
+              <input type="text" class="form-control" [(ngModel)]="model.departureAirport" id="departureAirport" name="departureAirport" required pattern="[A-Za-z]{3}" title="Three letter IATA code" value="@Model.DepartureAirport">
+              <small id="emailHelp" class="form-text text-muted">IATA code for airport of departure.</small>
+          </div>
+
+          <div class="form-group">
+              <label class="font-weight-bold" for="arrivalAirport">Arrival</label>
+              <input type="text" class="form-control" [(ngModel)]="model.arrivalAirport" id="arrivalAirport" name="arrivalAirport" required pattern="[A-Za-z]{3}" title="Three letter IATA code" value="@Model.ArrivalAirport">
+              <small id="emailHelp" class="form-text text-muted">IATA code for airport of arrival.</small>
+          </div>
+
+          <input type="submit" value="Submit" />
+      </form>
+  </div>
+</div>
