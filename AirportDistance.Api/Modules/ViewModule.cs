@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AirportDistance.Api.Models;
+﻿using AirportDistance.Api.Models;
 using AirportDistance.Api.Services;
 using Microsoft.Extensions.Options;
 using Nancy;
@@ -27,17 +26,33 @@ namespace AirportDistance.Api.Modules
             Get("/getAirports", async (x, ct) =>
                                 {
                                     var indexModel = new IndexModel(Request.Query as DynamicDictionary);
-                                    var request = this.Bind<GetAirportsRequest>();
 
-                                    var errors = request.Validate();
+                                    var externalRequest = this.Bind<GetAirportsRequest>();
+                                    var errors = externalRequest.Validate();
 
                                     if (errors.Any())
                                         indexModel.Errors = errors;
                                     else
-                                        await BuildIndexModel(indexModel, request);
+                                        await BuildIndexModel(indexModel, externalRequest);
 
                                     return View["Index", indexModel];
                                 });
+
+            Post("/api/getAirports", async (x, ct) =>
+            {
+                var externalRequest = this.Bind<GetAirportsRequest>();
+                var errors = externalRequest.Validate();
+
+                if (errors.Any())
+                {
+                    return errors;
+                }
+                else
+                {
+                    var externalResult = await _externalService.GetAirportsData(new[] { externalRequest.DepartureAirport, externalRequest.ArrivalAirport });
+                    return externalResult;
+                }
+            });
         }
 
         private async Task<IndexModel> BuildIndexModel(IndexModel model, GetAirportsRequest req)
